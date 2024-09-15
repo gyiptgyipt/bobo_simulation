@@ -6,7 +6,7 @@
         <hardware>
             <plugin>gazebo_ros2_control/GazeboSystem</plugin>
         </hardware>
-        <joint name="wheel_left_joint">
+        <joint name="left_wheel_joint">
             <command_interface name="velocity">
                 <param name="min">-500</param>
                 <param name="max">500</param>
@@ -14,7 +14,7 @@
             <state_interface name="velocity"/>
             <state_interface name="position"/>
         </joint>
-        <joint name="wheel_right_joint">
+        <joint name="right_wheel_joint">
             <command_interface name="velocity">
                 <param name="min">-500</param>
                 <param name="max">500</param>
@@ -28,7 +28,7 @@
         <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
             <robot_param>robot_description</robot_param>
             <robot_param_node>robot_state_publisher</robot_param_node>
-            <parameters>$(find bobo_description)/config/my_controllers.yaml</parameters>
+            <parameters>$(find bobo_description)/sim_config/my_controllers.yaml</parameters>
 
             <!-- Output -->
             <odometry_frame>odom</odometry_frame>

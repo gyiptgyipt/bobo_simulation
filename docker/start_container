@@ -9,6 +9,7 @@ docker run -it --network='bridge' \
 --env='XDG_RUNTIME_DIR=/run/user/${UID}' \
 --volume='/tmp/.X11-unix:/tmp/.X11-unix:rw' \
 --volume='/home/mr_robot/Desktop/Git/bobo_simulation/rom_robot_class:/ros2_ws/src/rom_robot_class' \
+--volume='/home/mr_robot/Desktop/Git/bobo_simulation/mytmux:/mytmux' \
 --name bobo_container \
 romrobotics/humble:bobo bash   
 docker stop bobo_container

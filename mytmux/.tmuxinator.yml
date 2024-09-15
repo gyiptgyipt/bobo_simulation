@@ -17,16 +17,16 @@ windows:
       root: ~/
       layout: 0a91,122x31,0,0{61x31,0,0,0,60x31,62,0,1}
       panes:
-        - clear; source ~/.bashrc; sleep 10; ros2 launch bobo_gazebo controller_spawner.launch.py
-        - clear; source ~/.bashrc; sleep 10; ros2 launch bobo_description rviz.launch.py open_rviz:=true
+        - clear; source ~/.bashrc; sleep 5; ros2 launch bobo_gazebo controller_spawner.launch.py
+        - clear; source ~/.bashrc; sleep 5; 
   - Localization: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; ros2 launch bobo_nav2 sim_localization_init_pose_launch.py
+        - clear; source ~/.bashrc; #sleep 10; ros2 launch bobo_nav2 sim_localization_init_pose_launch.py
   - Navigation: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; ros2 launch bobo_nav2 sim_navigation_launch.py map_subscribe_transient_local:=true
+        - clear; source ~/.bashrc; #sleep 10; ros2 launch bobo_nav2 sim_navigation_launch.py map_subscribe_transient_local:=true
   - BehaviorTree: 
       root: ~/
       panes:

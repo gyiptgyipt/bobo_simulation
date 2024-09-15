@@ -14,10 +14,10 @@ def generate_launch_description():
     gazebo_pkg = get_package_share_directory('bobo_gazebo')
     #joy_pkg = get_package_share_directory('rom_robotics_joy')
     description_pkg = get_package_share_directory('bobo_description')
-    rom_world = os.environ.get('ROM_GZ_WORLD', 'rom_maze_1.world')
+    rom_world = os.environ.get('ROM_GZ_WORLD', 'square.world')
     default_world_path = os.path.join(gazebo_pkg, 'worlds', rom_world)
 
-    urdf_file = os.path.join(description_pkg,'urdf', 'lidarbot.urdf')
+    urdf_file = os.path.join(description_pkg,'urdf', 'bobo.urdf')
     # robot_description_config = xacro.process_file(xacro_file)
     # my_xml = robot_description_config.toxml()
 
@@ -58,7 +58,7 @@ def generate_launch_description():
         package='gazebo_ros',
         executable='spawn_entity.py',
         # arguments=['-database', 'bobo_tall_ros', '-entity', 'bobo_tall_ros',
-        arguments=['-file', urdf_file, '-entity', 'bobo_tall_psa',
+        arguments=['-file', urdf_file, '-entity', 'bobo_standalone',
                    "-x", '0.0',
                    "-y", '0.0',
                    "-z", '0.3'],

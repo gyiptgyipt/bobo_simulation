@@ -10,28 +10,29 @@ ENV LANG=C.UTF-8 \
 RUN apt-get update && \
     apt-get install -y \
     python3-colcon-common-extensions \
-    python3-pip tmux tmuxinator \
-    build-essential ros-humble-gazebo-ros-pkgs \
-    git vim ros-humble-desktop-full \
+    python3-pip tmux tmuxinator evince \
+    build-essential ros-humble-gazebo-ros-pkgs ros-humble-joint-state-publisher \
+    git vim ros-humble-desktop-full ros-humble-twist-mux \
     ros-humble-gazebo-ros2-control ros-humble-gazebo-ros2-control-demos \
     ros-humble-ros2-control ros-humble-ros2-control-test-assets \
     ros-humble-ros2-controllers ros-humble-ros2-controllers-test-nodes \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a ROS 2 workspace directory
-RUN mkdir -p /ros2_ws/src
-
-# Set the working directory to the ROS 2 workspace
-WORKDIR /ros2_ws
-
-# Build the workspace (uncomment if you have packages to build)
-RUN . /opt/ros/humble/setup.sh && colcon build
-
-# Create a ROS 2 workspace directory
 RUN mkdir -p /test_ws/src
 
 # Set the working directory to the ROS 2 workspace
 WORKDIR /test_ws
+
+# Create a ROS 2 workspace directory
+RUN mkdir -p /ros2_ws/src \
+    && cd /ros2_ws/src/ \
+    && git clone -b humble https://github.com/ros-controls/gazebo_ros2_control \
+    && rosdep fix-permissions && rosdep update \
+    && rosdep install --from-paths ./ -i -y --rosdistro humble \
+      --ignore-src
+# Set the working directory to the ROS 2 workspace
+WORKDIR /ros2_ws
 
 # Build the workspace (uncomment if you have packages to build)
 RUN . /opt/ros/humble/setup.sh && colcon build
@@ -44,7 +45,7 @@ RUN echo 'export BOBO_MODEL=sim_robot2' >> ~/.bashrc
 RUN echo 'alias bb="colcon build --symlink-install && source install/setup.bash"' >> ~/.bashrc
 RUN echo 'alias delete_workspace="rm -rf build install log;"' >> ~/.bashrc
 RUN echo 'export ROS_DOMAIN_ID=99' >> ~/.bashrc
-RUN echo 'export ROM_GZ_WORLD=single_square.world' >> ~/.bashrc
+RUN echo 'export ROM_GZ_WORLD=square.world' >> ~/.bashrc
 RUN echo '#export ROM_GZ_WORLD=ball.world' >> ~/.bashrc
 RUN echo '#export ROM_GZ_WORLD=rom_maze_1.world' >> ~/.bashrc
 RUN echo '#export ROM_GZ_WORLD=rom_maze_4.world' >> ~/.bashrc

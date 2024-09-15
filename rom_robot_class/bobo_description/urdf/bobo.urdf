@@ -19,7 +19,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/base_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/base_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="0.75294 0.75294 0.75294 1"/>
@@ -28,7 +28,7 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/base_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/base_link.STL"/>
       </geometry>
     </collision>
   </link>
@@ -41,7 +41,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/wheel_right_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/wheel_right_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -50,14 +50,14 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/wheel_right_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/wheel_right_link.STL"/>
       </geometry>
     </collision>
   </link>
-  <joint name="wheel_right_joint" type="continuous">
+  <joint name="right_wheel_joint" type="continuous">
     <origin rpy="0 0 0" xyz="-0.0005 -0.17971 0.0854"/>
     <parent link="base_link"/>
-    <child link="wheel_right_link"/>
+    <child link="right_wheel_link"/>
     <axis xyz="0 -1 0"/>
   </joint>
   <link name="left_wheel_link">
@@ -69,7 +69,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/wheel_left_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/wheel_left_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -78,14 +78,14 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/wheel_left_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/wheel_left_link.STL"/>
       </geometry>
     </collision>
   </link>
-  <joint name="wheel_left_joint" type="continuous">
+  <joint name="left_wheel_joint" type="continuous">
     <origin rpy="0 0 0" xyz="-0.0005 0.17971 0.0854"/>
     <parent link="base_link"/>
-    <child link="wheel_left_link"/>
+    <child link="left_wheel_link"/>
     <axis xyz="0 -1 0"/>
   </joint>
   <link name="caster_front_right_link">
@@ -97,7 +97,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/caster_front_right_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/caster_front_right_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -106,11 +106,11 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/caster_front_right_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/caster_front_right_link.STL"/>
       </geometry>
     </collision>
   </link>
-  <joint name="caster_front_right_joint" type="continuous">
+  <joint name="caster_front_right_joint" type="fixed">
     <origin rpy="0 0 0.43633" xyz="0.16676 -0.077762 0.016"/>
     <parent link="base_link"/>
     <child link="caster_front_right_link"/>
@@ -125,7 +125,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/caster_front_left_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/caster_front_left_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -134,11 +134,11 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/caster_front_left_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/caster_front_left_link.STL"/>
       </geometry>
     </collision>
   </link>
-  <joint name="caster_front_left_joint" type="continuous">
+  <joint name="caster_front_left_joint" type="fixed">
     <origin rpy="0 0 -0.43633" xyz="0.16676 0.077762 0.016"/>
     <parent link="base_link"/>
     <child link="caster_front_left_link"/>
@@ -153,7 +153,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/caster_back_left_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/caster_back_left_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -162,11 +162,11 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/caster_back_left_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/caster_back_left_link.STL"/>
       </geometry>
     </collision>
   </link>
-  <joint name="caster_back_left_joint" type="continuous">
+  <joint name="caster_back_left_joint" type="fixed">
     <origin rpy="0 0 0.43633" xyz="-0.16676 0.077762 0.016"/>
     <parent link="base_link"/>
     <child link="caster_back_left_link"/>
@@ -181,7 +181,7 @@
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/caster_back_right_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/caster_back_right_link.STL"/>
       </geometry>
       <material name="">
         <color rgba="1 1 1 1"/>
@@ -190,11 +190,11 @@
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="/home/mr_robot/ros2_ws/src/bobo_description/meshes/caster_back_right_link.STL"/>
+        <mesh filename="/ros2_ws/src/rom_robot_class/bobo_description/meshes/caster_back_right_link.STL"/>
       </geometry>
     </collision>
   </link>
-  <joint name="caster_back_right_joint" type="continuous">
+  <joint name="caster_back_right_joint" type="fixed">
     <origin rpy="0 0 -0.43633" xyz="-0.16676 -0.077762 0.016"/>
     <parent link="base_link"/>
     <child link="caster_back_right_link"/>
@@ -213,7 +213,7 @@
       <geometry>
         <box size="0.05 0.05 0.05"/>
       </geometry>
-      <material name="grey_blue"/>
+      <material name="red"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0.015 0 -0.0065"/>
@@ -239,7 +239,7 @@
       <geometry>
         <box size="0.03 0.02 0.02"/>
       </geometry>
-      <material name="red"/>
+      <material name="green"/>
     </visual>
   </link>
   <!-- 3D CAM_Left -->
@@ -254,7 +254,7 @@
       <geometry>
         <box size="0.03 0.02 0.02"/>
       </geometry>
-      <material name="orange"/>
+      <material name="blue"/>
     </visual>
   </link>
   <!-- 3D CAM_Right -->
@@ -269,7 +269,7 @@
       <geometry>
         <box size="0.03 0.02 0.02"/>
       </geometry>
-      <material name="orange"/>
+      <material name="blue"/>
     </visual>
   </link>
   <!-- 3D CAM_Top -->
@@ -284,7 +284,7 @@
       <geometry>
         <box size="0.03 0.02 0.02"/>
       </geometry>
-      <material name="orange"/>
+      <material name="blue"/>
     </visual>
   </link>
   <!-- materials colors for rviz  -->
@@ -307,10 +307,10 @@
     <color rgba="1 0 0 0.8"/>
   </material>
   <material name="green">
-    <color rgba="0.0 0.8 0.0 1"/>
+    <color rgba="0 1 0 1"/>
   </material>
   <material name="blue">
-    <color rgba="0.0 0.0 1.0 1"/>
+    <color rgba="0 0 1 1"/>
   </material>
   <material name="grey_blue">
     <color rgba="0.4 0.4 1.0 0.8"/>
@@ -319,23 +319,22 @@
     <color rgba="1.0 0.7 0.0 1"/>
   </material>
   <!-- ROM END -->
-  <!-- ROS2 CONTROL -->
   <ros2_control name="GazeboSystem" type="system">
     <hardware>
       <plugin>gazebo_ros2_control/GazeboSystem</plugin>
     </hardware>
     <joint name="left_wheel_joint">
       <command_interface name="velocity">
-        <param name="min">-500</param>
-        <param name="max">500</param>
+        <param name="min">-50</param>
+        <param name="max">50</param>
       </command_interface>
       <state_interface name="velocity"/>
       <state_interface name="position"/>
     </joint>
     <joint name="right_wheel_joint">
       <command_interface name="velocity">
-        <param name="min">-500</param>
-        <param name="max">500</param>
+        <param name="min">-50</param>
+        <param name="max">50</param>
       </command_interface>
       <state_interface name="velocity"/>
       <state_interface name="position"/>
@@ -345,7 +344,7 @@
     <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
       <robot_param>robot_description</robot_param>
       <robot_param_node>robot_state_publisher</robot_param_node>
-      <parameters>/home/mr_robot/ros2_ws/src/bobo_description/sim_config/my_controllers.yaml</parameters>
+      <parameters>/ros2_ws/install/bobo_description/share/bobo_description/sim_config/my_controllers.yaml</parameters>
       <!-- Output -->
       <odometry_frame>odom</odometry_frame>
       <robot_base_frame>base_footprint</robot_base_frame>
@@ -354,7 +353,6 @@
       <publish_wheel_tf>true</publish_wheel_tf>
     </plugin>
   </gazebo>
-  <!-- IMU -->
   <gazebo reference="imu_link">
     <gravity>true</gravity>
     <sensor name="imu_sensor" type="imu">
@@ -375,7 +373,6 @@
       <pose>0 0 0 0 0 0</pose>
     </sensor>
   </gazebo>
-  <!-- Lidar -->
   <gazebo reference="laser_link">
     <material>Gazebo/Red</material>
     <sensor name="laser" type="ray">
@@ -394,7 +391,7 @@
           </horizontal>
         </scan>
         <range>
-          <min>0.05</min>
+          <min>0.1</min>
           <!-- 0.3 -->
           <max>12</max>
           <!-- 12 -->
@@ -410,4 +407,6 @@
       </plugin>
     </sensor>
   </gazebo>
+  <!--xacro:include filename="sim_camera.xacro" /-->
+  <!-- <xacro:include filename="sim_camera3d.xacro" /> -->
 </robot>
