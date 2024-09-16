@@ -15,10 +15,8 @@ windows:
         - clear; source ~/.bashrc; ros2 launch bobo_gazebo bobo_sim_ros2_control.launch.py
   - Driver: 
       root: ~/
-      layout: 0a91,122x31,0,0{61x31,0,0,0,60x31,62,0,1}
       panes:
         - clear; source ~/.bashrc; sleep 5; ros2 launch bobo_gazebo controller_spawner.launch.py
-        - clear; source ~/.bashrc; sleep 5; 
   - Localization: 
       root: ~/
       panes:
@@ -31,4 +29,3 @@ windows:
       root: ~/
       panes:
         - #clear; source ~/.bashrc; sleep 30; ros2 launch bobo_autonomy autonomy.launch.py
-        - #clear; source ~/.bashrc; ros2 run rom_markers deepblue

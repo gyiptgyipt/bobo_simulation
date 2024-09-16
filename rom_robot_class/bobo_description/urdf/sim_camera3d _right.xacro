@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- TOP CAMERA -->
-  <joint name="camera_optical_joint" type="fixed">
-        <parent link="cam3d_top_link"/>
-        <child link="camera_link_optical"/>
+      <!-- RIGHT CAMERA -->
+  <joint name="camera_optical_joint_right" type="fixed">
+        <parent link="cam3d_right_link"/>
+        <child link="camera_link_optical_right"/>
         <origin xyz="0 0 0" rpy="-1.57075 0 -1.57075"/> <!-- ${-pi/2} -->
     </joint>
-    <link name="camera_link_optical"></link>
+    <link name="camera_link_optical_right"></link>
 
-    <gazebo reference="cam3d_top_link">
+    <gazebo reference="cam3d_right_link_right">
         <material>Gazebo/Blue</material>
-        <sensor name="camera_top" type="depth">
+        <sensor name="camera_right" type="depth">
             <pose>0 0 0 0 0 0</pose>
             <visualize>true</visualize>
             <update_rate>10</update_rate>
@@ -27,8 +27,8 @@
                     <far>8.0</far>
                 </clip>
             </camera>
-            <plugin name="camera_controller_top" filename="libgazebo_ros_camera.so">
-                <frame_name>camera_link_optical</frame_name>
+            <plugin name="camera_controller_right" filename="libgazebo_ros_camera.so">
+                <frame_name>camera_link_optical_right</frame_name>
                 <min_depth>0.1</min_depth>
                 <max_depth>50</max_depth>
             </plugin>

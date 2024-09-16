@@ -1,4 +1,3 @@
-### install
-echo "export BOBO_MODEL=robot1" >> ~/.bashrc
-echo "#export BOBO_MODEL=robot2" >> ~/.bashrc
-echo "#export BOBO_MODEL=sim_robot2" >> ~/.bashrc
+#### to do
+[-] xacro မှာ camera left, right မရသေး
+[-] bobo.urdf မှာ right camera topic မပေါ်။
