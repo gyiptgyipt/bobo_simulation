@@ -442,7 +442,7 @@
         </sensor>
     </gazebo>
 
-      <!-- RIGHT CAMERA -->
+       <!-- RIGHT CAMERA -->
   <joint name="camera_optical_joint_right" type="fixed">
         <parent link="cam3d_right_link"/>
         <child link="camera_link_optical_right"/>
@@ -450,7 +450,7 @@
     </joint>
     <link name="camera_link_optical_right"></link>
 
-    <gazebo reference="cam3d_right_link_right">
+    <gazebo reference="cam3d_right_link">
         <material>Gazebo/Blue</material>
         <sensor name="camera_right" type="depth">
             <pose>0 0 0 0 0 0</pose>
