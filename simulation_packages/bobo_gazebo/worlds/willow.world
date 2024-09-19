@@ -91,7 +91,7 @@
     </spherical_coordinates>
     <model name='willowgarage'>
       <static>1</static>
-      <pose>-13.8598 -28.4008 0 0 -0 0</pose>
+      <pose>-13.5007 -31.5386 0 0 -0 0</pose>
       <link name='walls'>
         <collision name='collision'>
           <geometry>
@@ -127,10 +127,10 @@
       </link>
     </model>
     <state world_name='default'>
-      <sim_time>164 528000000</sim_time>
-      <real_time>165 176486468</real_time>
-      <wall_time>1726740521 191511363</wall_time>
-      <iterations>164528</iterations>
+      <sim_time>91 250000000</sim_time>
+      <real_time>91 525925774</real_time>
+      <wall_time>1726760139 710044452</wall_time>
+      <iterations>91250</iterations>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -142,10 +142,10 @@
         </link>
       </model>
       <model name='willowgarage'>
-        <pose>-13.8598 -28.4008 0 0 -0 0</pose>
+        <pose>-13.5007 -31.5386 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='walls'>
-          <pose>-13.8598 -28.4008 0 0 -0 0</pose>
+          <pose>-13.5007 -31.5386 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -157,7 +157,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>43.9654 -6.74515 32.3568 -0 0.733796 2.94419</pose>
+        <pose>113.983 -50.2362 128.635 0 0.723643 2.52819</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>

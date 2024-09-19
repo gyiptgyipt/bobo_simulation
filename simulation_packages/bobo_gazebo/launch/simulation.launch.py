@@ -18,9 +18,7 @@ def generate_launch_description():
     default_world_path = os.path.join(gazebo_pkg, 'worlds', rom_world)
 
     urdf_file = os.path.join(description_pkg,'urdf', 'bobo.urdf')
-    # robot_description_config = xacro.process_file(xacro_file)
-    # my_xml = robot_description_config.toxml()
-
+    
     bot = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             description_pkg, 'launch', 'description_ros2_control.launch.py'
@@ -54,6 +52,10 @@ def generate_launch_description():
         }.items(),
     )
 
+    dist_between_robot_and_ground = 0.3
+    if rom_world == 'sonoma_raceway.world':
+        dist_between_robot_and_ground = 5.0
+    
     spawn_robot_node = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
@@ -61,8 +63,50 @@ def generate_launch_description():
         arguments=['-file', urdf_file, '-entity', 'bobo_standalone',
                    "-x", '0.0',
                    "-y", '0.0',
-                   "-z", '0.3'],
+                   "-z", f"{dist_between_robot_and_ground}"],
         output='screen'
+    )
+    
+
+    diff_drive_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["diff_cont"],
+    )
+
+    joint_state_broadcaster_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_broad"],
+    )
+
+    twist_mux_params = os.path.join(get_package_share_directory('bobo_gazebo'), 'config', 'twist_mux.yaml')
+    twist_mux_node = Node(
+        package="twist_mux",
+        executable="twist_mux",
+        parameters=[twist_mux_params],
+        remappings=[('/cmd_vel_out', '/diff_cont/cmd_vel_unstamped')]
+    )
+    # Delay start of joint_state_broadcaster_spawner after `spawn_robot_node`
+    delay_joint_state_broadcaster_spawner_after_spawn_robot_node = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=spawn_robot_node,
+            on_exit=[joint_state_broadcaster_spawner],
+        )
+    )
+
+    # Delay start of robot_controller after `joint_state_broadcaster_spawner`
+    delay_diff_drive_spawner_after_joint_state_broadcaster_spawner = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=joint_state_broadcaster_spawner,
+            on_exit=[diff_drive_spawner],
+        )
+    )
+
+    # TimerAction to delay the node launch by 10 seconds
+    delayed_spawn_robot_node = TimerAction(
+        period=7.0,  # Delay in seconds
+        actions=[spawn_robot_node]
     )
     
     """ joystick_launch = IncludeLaunchDescription(
@@ -79,7 +123,11 @@ def generate_launch_description():
             bot,
             gazebo_launch,
             rviz_node,
-            spawn_robot_node,
+            #spawn_robot_node,
+            delayed_spawn_robot_node,
+            delay_joint_state_broadcaster_spawner_after_spawn_robot_node,
+            delay_diff_drive_spawner_after_joint_state_broadcaster_spawner,
+            twist_mux_node,
             #joystick_launch,
         ]
     )

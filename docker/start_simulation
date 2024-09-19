@@ -11,6 +11,6 @@ docker run -it --network='bridge' \
 --volume='/home/mr_robot/Desktop/Git/bobo_simulation/developer_packages:/ros2_ws/src/developer_packages' \
 --volume='/home/mr_robot/Desktop/Git/bobo_simulation/mytmux:/mytmux' \
 --name bobo_container \
-romrobotics/humble_bobo:latest bash   
+final/final:03 bash   
 docker stop bobo_container
 docker rm bobo_container

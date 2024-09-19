@@ -22,16 +22,8 @@ RUN apt-get update && \
 RUN mkdir -p /test_ws/src
 
 # Set the working directory to the ROS 2 workspace
-WORKDIR /test_ws
-
-# Create a ROS 2 workspace directory
-RUN mkdir -p /ros2_ws/src \
-    && cd /ros2_ws/src/ \
-    && git clone -b humble https://github.com/ros-controls/gazebo_ros2_control \
-    && rosdep fix-permissions && rosdep update \
-    && rosdep install --from-paths ./ -i -y --rosdistro humble \
-      --ignore-src
-# Set the working directory to the ROS 2 workspace
+RUN mkdir -p /bobo_ws/src
+RUN mkdir -p /ros2_ws/src
 WORKDIR /ros2_ws
 
 # Build the workspace (uncomment if you have packages to build)
@@ -46,9 +38,9 @@ RUN echo 'alias bb="colcon build --symlink-install && source install/setup.bash"
 RUN echo 'alias delete_workspace="rm -rf build install log;"' >> ~/.bashrc
 RUN echo 'export ROS_DOMAIN_ID=99' >> ~/.bashrc
 RUN echo 'export ROM_GZ_WORLD=square.world' >> ~/.bashrc
-RUN echo '#export ROM_GZ_WORLD=ball.world' >> ~/.bashrc
-RUN echo '#export ROM_GZ_WORLD=rom_maze_1.world' >> ~/.bashrc
-RUN echo '#export ROM_GZ_WORLD=rom_maze_4.world' >> ~/.bashrc
+RUN echo '#export ROM_GZ_WORLD=willow.world' >> ~/.bashrc
+RUN echo '#export ROM_GZ_WORLD=sonoma_raceway.world' >> ~/.bashrc
+RUN echo '#export ROM_GZ_WORLD=maze.world' >> ~/.bashrc
 RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
 
 ## copy ~/.gazebo/models /root/.gazebo/models----------------------------------------------------------
@@ -61,11 +53,14 @@ RUN pip install --no-cache-dir \
 # Copy local ROS 2 packages into the workspace (if any)
 #COPY ../bobo* /ros2_ws/src/
 COPY .tmux.conf /root/.tmux.conf
+COPY .tmuxinator.yml /rom_ws/.tmuxinator.yml
 
 # Source ROS 2 setup script
-RUN echo 'source /ros2_ws/install/setup.bash' >> ~/.bashrc
-RUN echo 'source /test_ws/install/setup.bash' >> ~/.bashrc
+RUN echo '#source /ros2_ws/install/setup.bash' >> ~/.bashrc
+RUN echo '#source /test_ws/install/setup.bash' >> ~/.bashrc
+RUN echo '#source /bobo_ws/install/setup.bash' >> ~/.bashrc
 
 # Set entrypoint to the ROS 2 bash shell
 ENTRYPOINT ["/ros_entrypoint.sh"]
+
 CMD ["bash"]
