@@ -9,13 +9,16 @@ ENV LANG=C.UTF-8 \
 # Install additional dependencies
 RUN apt-get update && \
     apt-get install -y \
-    python3-colcon-common-extensions \
-    python3-pip tmux tmuxinator evince \
+    python3-colcon-common-extensions ros-humble-robot-localization \
+    python3-pip tmux tmuxinator evince ros-humble-cartographer-rviz \
     build-essential ros-humble-gazebo-ros-pkgs ros-humble-joint-state-publisher \
     git vim ros-humble-desktop-full ros-humble-twist-mux \
+    ros-humble-rmw-cyclonedds-cpp \
     ros-humble-gazebo-ros2-control ros-humble-gazebo-ros2-control-demos \
     ros-humble-ros2-control ros-humble-ros2-control-test-assets \
     ros-humble-ros2-controllers ros-humble-ros2-controllers-test-nodes \
+    ros-humble-navigation2 ros-humble-slam-toolbox ros-humble-cartographer-ros \ 
+    ros-humble-rosbridge-suite \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a ROS 2 workspace directory
@@ -42,12 +45,14 @@ RUN echo '#export ROM_GZ_WORLD=willow.world' >> ~/.bashrc
 RUN echo '#export ROM_GZ_WORLD=sonoma_raceway.world' >> ~/.bashrc
 RUN echo '#export ROM_GZ_WORLD=maze.world' >> ~/.bashrc
 RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
+RUN echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> ~/.bashrc 
 
 ## copy ~/.gazebo/models /root/.gazebo/models----------------------------------------------------------
 
 # Optional: Install Python packages if needed
 RUN pip install --no-cache-dir \
     numpy \
+    flask \
     scipy
 
 # Copy local ROS 2 packages into the workspace (if any)
