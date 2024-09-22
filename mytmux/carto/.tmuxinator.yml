@@ -12,15 +12,15 @@ windows:
   - Gazebo: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; ros2 launch bobo_gazebo simulation.launch.py open_rviz:=True use_sim_time:=True
-  - EKF: 
+        - clear; source ~/.bashrc; ros2 launch bobo_gazebo simulation.launch.py use_sim_time:=True
+  - Ekf: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; #ros2 launch bobo_gazebo ekf.launch.py publish_tf:=False use_sim_time:=True
-  - SlamToolBox: 
+        - clear; source ~/.bashrc; ros2 launch bobo_ekf ekf.launch.py use_sim_time:=True
+  - Carto: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; ros2 launch bobo_nav2 online_async_launch_mapping_launch.py use_sim_time:=True
+        - clear; source ~/.bashrc; ros2 launch bobo_carto cartographer.launch.py use_sim_time:=True
   - NAV2: 
       root: ~/
       panes:
@@ -28,7 +28,7 @@ windows:
   - TwistKeyboard: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; ros2 run teleop_twist_keyboard teleop_twist_keyboard  --ros-args --remap /cmd_vel:=/cmd_vel_keyboard
+        - clear; source ~/.bashrc; ros2 run teleop_twist_keyboard teleop_twist_keyboard /cmd_vel:=/cmd_vel_keyboard
   - CLI: 
       root: ~/
       panes:

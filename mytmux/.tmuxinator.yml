@@ -13,7 +13,7 @@ windows:
       root: ~/
       panes:
         - clear; source ~/.bashrc; ros2 launch bobo_gazebo simulation.launch.py
-  - EKF: 
+  - Ekf: 
       root: ~/
       panes:
         - clear; source ~/.bashrc; sleep 10; ros2 launch bobo_ekf ekf.launch.py

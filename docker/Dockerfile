@@ -46,7 +46,7 @@ RUN echo '#export ROM_GZ_WORLD=sonoma_raceway.world' >> ~/.bashrc
 RUN echo '#export ROM_GZ_WORLD=maze.world' >> ~/.bashrc
 RUN echo 'source /usr/share/gazebo/setup.bash' >> ~/.bashrc
 RUN echo 'export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp' >> ~/.bashrc 
-
+RUN echo 'export ROS_DOMAIN_ID=69' >> ~/.bashrc 
 ## copy ~/.gazebo/models /root/.gazebo/models----------------------------------------------------------
 
 # Optional: Install Python packages if needed

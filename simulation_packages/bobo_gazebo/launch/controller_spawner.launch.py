@@ -30,6 +30,9 @@ def generate_launch_description():
         package="controller_manager",
         executable="spawner",
         arguments=["diff_cont"],
+        parameters=[{
+            'diff_cont.enable_odom_tf': LaunchConfiguration('enable_odom_tf')
+        }]
     )
 
     joint_state_broadcaster_spawner = Node(
@@ -64,6 +67,7 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
+            DeclareLaunchArgument('enable_odom_tf', default_value='true', description='Enable or disable the publishing of the odom to base_link tf'),
             spawn_robot_node,
             delay_joint_state_broadcaster_spawner_after_spawn_robot_node,
             delay_diff_drive_spawner_after_joint_state_broadcaster_spawner,

@@ -41,7 +41,7 @@ def generate_launch_description():
         launch_arguments={
             "use_sim_time": "true",
             "robot_name": "bobo",
-            "world": default_world_path,
+            #"world": default_world_path,
             "lite": "false",
             "world_init_x": "0.0",
             "world_init_y": "0.0",
@@ -72,6 +72,9 @@ def generate_launch_description():
         package="controller_manager",
         executable="spawner",
         arguments=["diff_cont"],
+        parameters=[{
+            'diff_cont.enable_odom_tf': LaunchConfiguration('enable_odom_tf')
+        }]
     )
 
     joint_state_broadcaster_spawner = Node(
@@ -120,6 +123,7 @@ def generate_launch_description():
             DeclareLaunchArgument('open_rviz', default_value='false', description='Open RViz.'),
             DeclareLaunchArgument('use_joystick', default_value='true', description='JoyStick.'),
             DeclareLaunchArgument('use_sim_time', default_value='true', description='Sim Time'),
+            DeclareLaunchArgument('enable_odom_tf', default_value='false', description='Enable or disable the publishing of the odom to base_link tf'),
             bot,
             gazebo_launch,
             rviz_node,
