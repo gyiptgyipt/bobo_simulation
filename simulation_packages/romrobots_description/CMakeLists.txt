@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(bobo_description)
+project(romrobots_description)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -27,7 +27,7 @@ install(DIRECTORY
 	launch
 	urdf
   meshes
-  sim_config
+  config
 	DESTINATION share/${PROJECT_NAME}
 )
 

@@ -4,16 +4,17 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
 from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, TimerAction, RegisterEventHandler
-from launch.conditions import IfCondition
+from launch.conditions import IfCondition, UnlessCondition
 from launch.substitutions import LaunchConfiguration
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.event_handlers import OnProcessExit, OnProcessStart
 import xacro
 
 def generate_launch_description():
+    use_rviz     = LaunchConfiguration('use_rviz')
+    description_pkg = get_package_share_directory('romrobots_description')
+
     gazebo_pkg = get_package_share_directory('bobo_gazebo')
-    #joy_pkg = get_package_share_directory('rom_robotics_joy')
-    description_pkg = get_package_share_directory('bobo_description')
     rom_world = os.environ.get('ROM_GZ_WORLD', 'square.world')
     default_world_path = os.path.join(gazebo_pkg, 'worlds', rom_world)
 
@@ -21,15 +22,36 @@ def generate_launch_description():
     
     bot = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            description_pkg, 'launch', 'description_ros2_control.launch.py'
+            description_pkg, 'launch', 'bobo_description_ros2_control.launch.py'
         )]), launch_arguments={'use_sim_time': 'true'}.items()
+    )
+
+    sed_command_false = ExecuteProcess(
+        # cmd=[
+        #     'sed', '-i', 
+        #     's/enable_odom_tf: true/enable_odom_tf: false/g', 
+        #     '/home/mr_robot/test_ws/src/simulation_packages/romrobots_description/config/bobo_controllers.yaml'
+        # ],
+        # output='screen',
+        cmd=['ros2', 'param', 'set', '/diff_cont', 'enagle_odom_tf', 'True'],
+        condition=UnlessCondition(LaunchConfiguration('odom_tf'))
+    )
+    sed_command_true = ExecuteProcess(
+        # cmd=[
+        #     'sed', '-i', 
+        #     's/enable_odom_tf: false/enable_odom_tf: true/g', 
+        #     '/home/mr_robot/test_ws/src/simulation_packages/romrobots_description/config/bobo_controllers.yaml'
+        # ],
+        # output='screen',
+        cmd=['ros2', 'param', 'set', '/diff_cont', 'enagle_odom_tf', 'False'],
+        condition=IfCondition(LaunchConfiguration('odom_tf'))
     )
 
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
         arguments=['-d', os.path.join(gazebo_pkg, 'rviz2', 'display.rviz')],
-        condition=IfCondition(LaunchConfiguration('open_rviz'))
+        condition=IfCondition(use_rviz)
     )
 
     gazebo_params_file = os.path.join(get_package_share_directory(
@@ -72,9 +94,6 @@ def generate_launch_description():
         package="controller_manager",
         executable="spawner",
         arguments=["diff_cont"],
-        parameters=[{
-            'diff_cont.enable_odom_tf': LaunchConfiguration('enable_odom_tf')
-        }]
     )
 
     joint_state_broadcaster_spawner = Node(
@@ -120,18 +139,18 @@ def generate_launch_description():
 
     return LaunchDescription(
         [
-            DeclareLaunchArgument('open_rviz', default_value='false', description='Open RViz.'),
-            DeclareLaunchArgument('use_joystick', default_value='true', description='JoyStick.'),
+            DeclareLaunchArgument('use_joystick', default_value='false', description='JoyStick.'),
             DeclareLaunchArgument('use_sim_time', default_value='true', description='Sim Time'),
-            DeclareLaunchArgument('enable_odom_tf', default_value='false', description='Enable or disable the publishing of the odom to base_link tf'),
+            sed_command_false,
+            sed_command_true,
             bot,
             gazebo_launch,
             rviz_node,
-            #spawn_robot_node,
+            #spawn_robot_node,----------
             delayed_spawn_robot_node,
             delay_joint_state_broadcaster_spawner_after_spawn_robot_node,
             delay_diff_drive_spawner_after_joint_state_broadcaster_spawner,
             twist_mux_node,
-            #joystick_launch,
+            #joystick_launch,---------------------
         ]
     )

@@ -13,13 +13,13 @@ import xacro
 def generate_launch_description():
     gazebo_pkg = get_package_share_directory('bobo_gazebo')
     #joy_pkg = get_package_share_directory('rom_robotics_joy')
-    description_pkg = get_package_share_directory('bobo_description')
+    description_pkg = get_package_share_directory('romrobots_description')
     rom_world = os.environ.get('ROM_GZ_WORLD', 'square.world')
     default_world_path = os.path.join(gazebo_pkg, 'worlds', rom_world)
     
     bot = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            description_pkg, 'launch', 'description_ros2_control.launch.py'
+            description_pkg, 'launch', 'bobo_description_ros2_control.launch.py'
         )]), launch_arguments={'use_sim_time': 'true'}.items()
     )
 

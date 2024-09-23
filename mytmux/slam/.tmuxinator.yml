@@ -20,7 +20,7 @@ windows:
   - SlamToolBox: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; ros2 launch bobo_nav2 online_async_launch_mapping_launch.py use_sim_time:=True
+        - clear; source ~/.bashrc; sleep 9; ros2 launch bobo_nav2 online_async_launch_mapping_launch.py use_sim_time:=True
   - NAV2: 
       root: ~/
       panes:
@@ -32,4 +32,4 @@ windows:
   - CLI: 
       root: ~/
       panes:
-        - source ~/.bashrc; clear; 
+        - source ~/.bashrc; clear; sleep 11; ros2 run rqt_publisher rqt_publisher

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>bobo_description</name>
+  <name>romrobots_description</name>
   <version>0.0.1</version>
   <description>robot description</description>
   <maintainer email="server01.psa1981@gmail.com">mr_robot</maintainer>

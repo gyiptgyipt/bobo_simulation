@@ -7,7 +7,7 @@
       },
       "includePath": [
         "/opt/ros/humble/include/**",
-        "/home/mr_robot/test_ws/src/rom_robot_class/bobo_description/include/**",
+        "/home/mr_robot/test_ws/src/rom_robot_class/romrobots_description/include/**",
         "/home/mr_robot/test_ws/src/rom_robot_class/rom_msgs/include/**",
         "/home/mr_robot/test_ws/src/rom_robot_class/rom_robot_driver/include/**",
         "include/**",
