@@ -11,10 +11,10 @@ from launch.event_handlers import OnProcessExit, OnProcessStart
 import xacro
 
 def generate_launch_description():
-    gazebo_pkg = get_package_share_directory('bobo_gazebo')
+    gazebo_pkg = get_package_share_directory('romrobots_gazebo')
     #joy_pkg = get_package_share_directory('rom_robotics_joy')
     description_pkg = get_package_share_directory('romrobots_description')
-    rom_world = os.environ.get('ROM_GZ_WORLD', 'square.world')
+    rom_world = os.environ.get('ROM_GZ_WORLD', 'empty.world')
     default_world_path = os.path.join(gazebo_pkg, 'worlds', rom_world)
     
     bot = IncludeLaunchDescription(
@@ -31,7 +31,7 @@ def generate_launch_description():
     )
 
     gazebo_params_file = os.path.join(get_package_share_directory(
-        'bobo_gazebo'), 'config', 'gazebo_params.yaml')
+        'romrobots_gazebo'), 'config', 'gazebo_params.yaml')
 
     gazebo_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(

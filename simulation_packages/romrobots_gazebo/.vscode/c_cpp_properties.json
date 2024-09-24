@@ -9,7 +9,7 @@
         "/home/mr_robot/developer_ws/install/stm32f4_system_interface_gpio/include/**",
         "/home/mr_robot/test_ws/install/bobo_hardware/include/**",
         "/opt/ros/humble/include/**",
-        "/home/mr_robot/ros2_ws/src/bobo_gazebo/include/**",
+        "/home/mr_robot/ros2_ws/src/romrobots_gazebo/include/**",
         "/usr/include/**"
       ],
       "name": "ROS",

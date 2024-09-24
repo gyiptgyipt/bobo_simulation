@@ -11,9 +11,11 @@ import xacro
 
 def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
+
+    rom_robot_name = os.environ.get('ROM_ROBOT_MODEL', 'bobo')
     
     urdf_pkg = get_package_share_directory('romrobots_description')
-    urdf_path= os.path.join(urdf_pkg, 'urdf', "bobo.urdf")
+    urdf_path= os.path.join(urdf_pkg, 'urdf', f"{rom_robot_name}.urdf")
     urdf = open(urdf_path).read()
    
     #params = {'robot_description': robot_description_config.toxml(), 'use_sim_time': use_sim_time}

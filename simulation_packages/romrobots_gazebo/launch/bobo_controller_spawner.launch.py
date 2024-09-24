@@ -29,7 +29,7 @@ def generate_launch_description():
     diff_drive_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["diff_cont"],
+        arguments=["diff_controller"],
         parameters=[{
             'diff_cont.enable_odom_tf': LaunchConfiguration('enable_odom_tf')
         }]
@@ -38,10 +38,10 @@ def generate_launch_description():
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_broad"],
+        arguments=["joint_broadcaster"],
     )
 
-    twist_mux_params = os.path.join(get_package_share_directory('bobo_gazebo'), 'config', 'twist_mux.yaml')
+    twist_mux_params = os.path.join(get_package_share_directory('romrobots_gazebo'), 'config', 'twist_mux.yaml')
     twist_mux_node = Node(
         package="twist_mux",
         executable="twist_mux",

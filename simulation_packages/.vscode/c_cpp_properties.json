@@ -7,7 +7,7 @@
       },
       "includePath": [
         "/opt/ros/humble/include/**",
-        "/home/mr_robot/test_ws/src/simulation_packages/bobo_gazebo/include/**",
+        "/home/mr_robot/test_ws/src/simulation_packages/romrobots_gazebo/include/**",
         "/usr/include/**"
       ],
       "name": "ROS",

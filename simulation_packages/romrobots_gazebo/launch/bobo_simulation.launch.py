@@ -14,36 +14,38 @@ def generate_launch_description():
     use_rviz     = LaunchConfiguration('use_rviz')
     description_pkg = get_package_share_directory('romrobots_description')
 
-    gazebo_pkg = get_package_share_directory('bobo_gazebo')
-    rom_world = os.environ.get('ROM_GZ_WORLD', 'square.world')
+    gazebo_pkg = get_package_share_directory('romrobots_gazebo')
+    rom_world = os.environ.get('ROM_GZ_WORLD', 'empty.world')
     default_world_path = os.path.join(gazebo_pkg, 'worlds', rom_world)
+
+    rom_robot_name = os.environ.get('ROM_ROBOT_MODEL', 'bobo')
 
     urdf_file = os.path.join(description_pkg,'urdf', 'bobo.urdf')
     
     bot = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            description_pkg, 'launch', 'bobo_description_ros2_control.launch.py'
+            description_pkg, 'launch', f'{rom_robot_name}_description_ros2_control.launch.py'
         )]), launch_arguments={'use_sim_time': 'true'}.items()
     )
 
     sed_command_false = ExecuteProcess(
-        # cmd=[
-        #     'sed', '-i', 
-        #     's/enable_odom_tf: true/enable_odom_tf: false/g', 
-        #     '/home/mr_robot/test_ws/src/simulation_packages/romrobots_description/config/bobo_controllers.yaml'
-        # ],
-        # output='screen',
-        cmd=['ros2', 'param', 'set', '/diff_cont', 'enagle_odom_tf', 'True'],
+        cmd=[
+            'sed', '-i', 
+            's/enable_odom_tf: true/enable_odom_tf: false/g', 
+            '/home/mr_robot/test_ws/src/simulation_packages/romrobots_description/config/bobo_controllers.yaml'
+        ],
+        output='screen',
+        # cmd=['ros2', 'param', 'set', '/diff_cont', 'enagle_odom_tf', 'True'],
         condition=UnlessCondition(LaunchConfiguration('odom_tf'))
     )
     sed_command_true = ExecuteProcess(
-        # cmd=[
-        #     'sed', '-i', 
-        #     's/enable_odom_tf: false/enable_odom_tf: true/g', 
-        #     '/home/mr_robot/test_ws/src/simulation_packages/romrobots_description/config/bobo_controllers.yaml'
-        # ],
-        # output='screen',
-        cmd=['ros2', 'param', 'set', '/diff_cont', 'enagle_odom_tf', 'False'],
+        cmd=[
+            'sed', '-i', 
+            's/enable_odom_tf: false/enable_odom_tf: true/g', 
+            '/home/mr_robot/test_ws/src/simulation_packages/romrobots_description/config/bobo_controllers.yaml'
+        ],
+        output='screen',
+        # cmd=['ros2', 'param', 'set', '/diff_cont', 'enagle_odom_tf', 'False'],
         condition=IfCondition(LaunchConfiguration('odom_tf'))
     )
 
@@ -55,7 +57,7 @@ def generate_launch_description():
     )
 
     gazebo_params_file = os.path.join(get_package_share_directory(
-        'bobo_gazebo'), 'config', 'gazebo_params.yaml')
+        'romrobots_gazebo'), 'config', 'gazebo_params.yaml')
 
     gazebo_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(
@@ -63,7 +65,7 @@ def generate_launch_description():
         launch_arguments={
             "use_sim_time": "true",
             "robot_name": "bobo",
-            #"world": default_world_path,
+            "world": default_world_path,
             "lite": "false",
             "world_init_x": "0.0",
             "world_init_y": "0.0",
@@ -93,16 +95,16 @@ def generate_launch_description():
     diff_drive_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["diff_cont"],
+        arguments=["diff_controller"],
     )
 
     joint_state_broadcaster_spawner = Node(
         package="controller_manager",
         executable="spawner",
-        arguments=["joint_broad"],
+        arguments=["joint_broadcaster"],
     )
 
-    twist_mux_params = os.path.join(get_package_share_directory('bobo_gazebo'), 'config', 'twist_mux.yaml')
+    twist_mux_params = os.path.join(get_package_share_directory('romrobots_gazebo'), 'config', 'twist_mux.yaml')
     twist_mux_node = Node(
         package="twist_mux",
         executable="twist_mux",

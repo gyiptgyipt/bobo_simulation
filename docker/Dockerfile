@@ -34,13 +34,12 @@ RUN . /opt/ros/humble/setup.sh && colcon build
 
 # Source ROS 2 setup script
 RUN echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
-RUN echo '#export BOBO_MODEL=robot1' >> ~/.bashrc
-RUN echo '#export BOBO_MODEL=robot2' >> ~/.bashrc
-RUN echo 'export BOBO_MODEL=sim_robot2' >> ~/.bashrc
+RUN echo '#export ROM_ROBOT_MODEL=four_wheel' >> ~/.bashrc
+RUN echo '#export ROM_ROBOT_MODEL=drone' >> ~/.bashrc
+RUN echo 'export ROM_ROBOT_MODEL=bobo' >> ~/.bashrc
 RUN echo 'alias bb="colcon build --symlink-install && source install/setup.bash"' >> ~/.bashrc
 RUN echo 'alias delete_workspace="rm -rf build install log;"' >> ~/.bashrc
-RUN echo 'export ROS_DOMAIN_ID=99' >> ~/.bashrc
-RUN echo 'export ROM_GZ_WORLD=square.world' >> ~/.bashrc
+RUN echo '#export ROM_GZ_WORLD=square.world' >> ~/.bashrc
 RUN echo '#export ROM_GZ_WORLD=willow.world' >> ~/.bashrc
 RUN echo '#export ROM_GZ_WORLD=sonoma_raceway.world' >> ~/.bashrc
 RUN echo '#export ROM_GZ_WORLD=maze.world' >> ~/.bashrc
