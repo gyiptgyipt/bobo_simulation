@@ -20,7 +20,7 @@ def generate_launch_description():
 
     rom_robot_name = os.environ.get('ROM_ROBOT_MODEL', 'bobo')
 
-    urdf_file = os.path.join(description_pkg,'urdf', 'bobo.urdf')
+    urdf_file = os.path.join(description_pkg,'urdf', f'{rom_robot_name}.urdf')
     
     bot = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
@@ -32,7 +32,7 @@ def generate_launch_description():
         cmd=[
             'sed', '-i', 
             's/enable_odom_tf: true/enable_odom_tf: false/g', 
-            '/home/mr_robot/test_ws/src/simulation_packages/romrobots_description/config/bobo_controllers.yaml'
+            f'/home/mr_robot/test_ws/src/simulation_packages/romrobots_description/config/{rom_robot_name}_controllers.yaml'
         ],
         output='screen',
         # cmd=['ros2', 'param', 'set', '/diff_cont', 'enagle_odom_tf', 'True'],
@@ -42,7 +42,7 @@ def generate_launch_description():
         cmd=[
             'sed', '-i', 
             's/enable_odom_tf: false/enable_odom_tf: true/g', 
-            '/home/mr_robot/test_ws/src/simulation_packages/romrobots_description/config/bobo_controllers.yaml'
+            f'/home/mr_robot/test_ws/src/simulation_packages/romrobots_description/config/{rom_robot_name}_controllers.yaml'
         ],
         output='screen',
         # cmd=['ros2', 'param', 'set', '/diff_cont', 'enagle_odom_tf', 'False'],
@@ -52,7 +52,10 @@ def generate_launch_description():
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
-        arguments=['-d', os.path.join(gazebo_pkg, 'rviz2', 'display.rviz')],
+        arguments=[
+            '-d', os.path.join(gazebo_pkg, 'rviz2', 'display.rviz'),
+            '--ros-args', '--log-level', 'error',
+            ],
         condition=IfCondition(use_rviz)
     )
 
@@ -109,7 +112,7 @@ def generate_launch_description():
         package="twist_mux",
         executable="twist_mux",
         parameters=[twist_mux_params],
-        remappings=[('/cmd_vel_out', '/diff_cont/cmd_vel_unstamped')]
+        remappings=[('/cmd_vel_out', '/diff_controller/cmd_vel_unstamped')]
     )
     # Delay start of joint_state_broadcaster_spawner after `spawn_robot_node`
     delay_joint_state_broadcaster_spawner_after_spawn_robot_node = RegisterEventHandler(

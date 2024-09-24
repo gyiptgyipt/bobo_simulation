@@ -74,7 +74,7 @@
       <maxVel>0.5</maxVel>
       <minDepth>0.00</minDepth> -->
       <mu1>1.0</mu1>
-      <mu2>0.001</mu2>
+      <mu2>0.05</mu2>
     </gazebo>
     <gazebo reference="caster_back_link">
       <material>Gazebo/Black</material>
@@ -86,7 +86,7 @@
       <maxVel>0.5</maxVel>  
       <minDepth>0.00</minDepth> -->
       <mu1>1.0</mu1>
-      <mu2>0.001</mu2>
+      <mu2>0.05</mu2>
     </gazebo>
 
     <gazebo reference="imu_link">
@@ -96,7 +96,7 @@
             <update_rate>20</update_rate>
             <visualize>true</visualize>
             <topic>/imu</topic>
-            <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+            <plugin filename="libgazebo_ros_imu_sensor.so" name="imu">
                 <topicName>imu</topicName>
                 <bodyName>imu_link</bodyName>
                 <updateRateHZ>10.0</updateRateHZ>
