@@ -17,7 +17,7 @@ def generate_launch_description():
     rom_world = os.environ.get('ROM_GZ_WORLD', 'empty.world')
     default_world_path = os.path.join(gazebo_pkg, 'worlds', rom_world)
 
-    rom_robot_name = os.environ.get('ROM_ROBOT_MODEL', 'bobo')
+    rom_robot_name = os.environ.get('ROM_ROBOT_MODEL', 'yoyo')
     
     bot = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
@@ -40,7 +40,7 @@ def generate_launch_description():
             get_package_share_directory("gazebo_ros"), "launch", "gazebo.launch.py")),
         launch_arguments={
             "use_sim_time": "true",
-            "robot_name": "bobo",
+            "robot_name": "yoyo",
             "world": default_world_path,
             "lite": "false",
             "world_init_x": "0.0",

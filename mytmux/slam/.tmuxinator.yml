@@ -12,11 +12,11 @@ windows:
   - Gazebo: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; ros2 launch bobo_gazebo simulation.launch.py open_rviz:=True use_sim_time:=True
+        - clear; source ~/.bashrc; ros2 launch romrobots_gazebo bobo_simulation.launch.py use_rviz:=False odom_tf:=False
   - EKF: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; #ros2 launch bobo_gazebo ekf.launch.py publish_tf:=False use_sim_time:=True
+        - clear; source ~/.bashrc; ros2 launch bobo_ekf ekf.launch.py publish_tf:=True use_sim_time:=True
   - SlamToolBox: 
       root: ~/
       panes:

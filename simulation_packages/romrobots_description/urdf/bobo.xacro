@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 
 <robot name="robot" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:include filename="$(find romrobots_description)/urdf/bobo_common_properties.urdf.xacro"/>
+  <xacro:include filename="$(find romrobots_description)/urdf/common_properties.urdf.xacro"/>
   
   <xacro:macro name="robot">
     <link name="base_footprint"/>
@@ -97,62 +97,63 @@
       </inertial>
     </link>
 
-    <joint name="caster_front_joint" type="fixed">
-      <parent link="base_link"/>
-      <child link="caster_front_link"/>
-      <origin xyz="0.17 0.0 0.0195" rpy="${-M_PI/2} 0 0"/>
-    </joint>
-    <link name="caster_front_link">
-      <visual>
-        <geometry>
-          <cylinder length="0.0276" radius="0.035"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <material name="black"/>
-      </visual>
-      <collision>
-        <geometry>
-          <sphere radius="0.035"/>
-        </geometry>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-      </collision>
-      <inertial>
-        <mass value="0.01" />
-        <origin xyz="0 0 0" />
-        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-                 iyy="0.001" iyz="0.0"
-                 izz="0.001" />
-      </inertial>
-    </link>
+<!-- NEW CASTER -->
+  <link name="front_caster_ball">
+    <inertial>
+      <mass value="0.1"/>  <!-- Adjust the mass as per your robot's specs -->
+      <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
 
-    <joint name="caster_back_joint" type="fixed">
-      <parent link="base_link"/>
-      <child link="caster_back_link"/>
-      <origin xyz="-0.17 0.0 0.015" rpy="${-M_PI/2} 0 0"/>
-    </joint>
-    <link name="caster_back_link">
-      <visual>
-        <geometry>
-          <cylinder length="0.0276" radius="0.035"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <material name="black"/>
-      </visual>
-      <collision>
-        <geometry>
-          <sphere radius="0.035"/>
-        </geometry>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-      </collision>
-      <inertial>
-        <mass value="0.01" />
-        <origin xyz="0 0 0" />
-        <inertia ixx="0.001" ixy="0.0" ixz="0.0"
-                 iyy="0.001" iyz="0.0"
-                 izz="0.001" />
-      </inertial>
-    </link>
+    <visual>
+      <geometry>
+        <sphere radius="0.02"/>  <!-- Radius of the caster ball -->
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
 
+    <collision>
+      <geometry>
+        <sphere radius="0.02"/>  <!-- Same radius as the visual element -->
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="front_caster_ball_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="front_caster_ball"/>
+    <origin xyz="0.16676 0 0.01" rpy="0 0 0"/>  <!-- z axis  -->
+  </joint>
+  
+  <link name="back_caster_ball">
+    <inertial>
+      <mass value="0.1"/>  <!-- Adjust the mass as per your robot's specs -->
+       <inertia ixx="0.001" iyy="0.001" izz="0.001" ixy="0.0" ixz="0.0" iyz="0.0"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+        <sphere radius="0.02"/>  <!-- Radius of the caster ball -->
+      </geometry>
+      <material name="grey">
+        <color rgba="0.5 0.5 0.5 1.0"/>
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <sphere radius="0.02"/>  <!-- Same radius as the visual element -->
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="back_caster_ball_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="back_caster_ball"/>
+    <origin xyz="-0.16676 0 0.01" rpy="0 0 0"/>  <!-- z axis  -->
+  </joint>
+<!-- caster end -->
     <joint name="imu_joint" type="fixed">
       <parent link="base_link"/>
       <child link="imu_link"/>

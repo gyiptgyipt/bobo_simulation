@@ -21,7 +21,7 @@ def generate_launch_description():
     publish_period_sec = LaunchConfiguration('publish_period_sec', default='1.0')
 
     rviz_config_dir = os.path.join(get_package_share_directory('bobo_carto'),
-                                   'rviz', 'tb3_cartographer.rviz')
+                                   'rviz', 'bobo_cartographer.rviz')
 
     return LaunchDescription([
         DeclareLaunchArgument(
@@ -43,7 +43,7 @@ def generate_launch_description():
             name='cartographer_node',
             output='screen',
             parameters=[{'use_sim_time': use_sim_time}],
-            remappings=[('/odom', '/odom_filtered')],
+            remappings=[('/odom', '/diff_controller/odom')],
             arguments=['-configuration_directory', cartographer_config_dir,
                        '-configuration_basename', configuration_basename],
             ),

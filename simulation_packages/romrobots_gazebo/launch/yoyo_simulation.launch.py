@@ -18,7 +18,7 @@ def generate_launch_description():
     rom_world = os.environ.get('ROM_GZ_WORLD', 'empty.world')
     default_world_path = os.path.join(gazebo_pkg, 'worlds', rom_world)
 
-    rom_robot_name = os.environ.get('ROM_ROBOT_MODEL', 'bobo')
+    rom_robot_name = os.environ.get('ROM_ROBOT_MODEL', 'yoyo')
 
     urdf_file = os.path.join(description_pkg,'urdf', f'{rom_robot_name}.urdf')
     
@@ -67,7 +67,7 @@ def generate_launch_description():
             get_package_share_directory("gazebo_ros"), "launch", "gazebo.launch.py")),
         launch_arguments={
             "use_sim_time": "true",
-            "robot_name": "bobo",
+            "robot_name": "yoyo",
             "world": default_world_path,
             "lite": "false",
             "world_init_x": "0.0",
@@ -86,8 +86,8 @@ def generate_launch_description():
     spawn_robot_node = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        # arguments=['-database', 'bobo_tall_ros', '-entity', 'bobo_tall_ros',
-        arguments=['-file', urdf_file, '-entity', 'bobo_standalone',
+        # arguments=['-database', 'yoyo_tall_ros', '-entity', 'yoyo_tall_ros',
+        arguments=['-file', urdf_file, '-entity', 'yoyo_standalone',
                    "-x", '0.0',
                    "-y", '0.0',
                    "-z", f"{dist_between_robot_and_ground}"],

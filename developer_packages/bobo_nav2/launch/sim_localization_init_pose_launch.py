@@ -14,7 +14,7 @@ from nav2_common.launch import RewrittenYaml
 
 def generate_launch_description():
     # Get the launch directory
-    bringup_dir = get_package_share_directory('rom2109_nav2')
+    bringup_dir = get_package_share_directory('bobo_nav2')
 
     namespace = LaunchConfiguration('namespace')
     map_yaml_file = LaunchConfiguration('map')
@@ -154,7 +154,7 @@ def generate_launch_description():
     )
 
     init_pose_node_cmd = Node(
-        package='rom2109_nav2',
+        package='bobo_nav2',
         executable='init_robot_pose',
         name='init_robot_pose_by_custom_node',
         output="screen"

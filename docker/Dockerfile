@@ -13,7 +13,7 @@ RUN apt-get update && \
     python3-pip tmux tmuxinator evince ros-humble-cartographer-rviz \
     build-essential ros-humble-gazebo-ros-pkgs ros-humble-joint-state-publisher \
     git vim ros-humble-desktop-full ros-humble-twist-mux \
-    ros-humble-rmw-cyclonedds-cpp \
+    ros-humble-rmw-cyclonedds-cpp ros-humble-rviz-imu-plugin ros-humble-rqt-tf-tree \
     ros-humble-gazebo-ros2-control ros-humble-gazebo-ros2-control-demos \
     ros-humble-ros2-control ros-humble-ros2-control-test-assets \
     ros-humble-ros2-controllers ros-humble-ros2-controllers-test-nodes \

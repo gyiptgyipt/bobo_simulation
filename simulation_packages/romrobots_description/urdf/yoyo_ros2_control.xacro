@@ -28,7 +28,7 @@
         <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
             <robot_param>robot_description</robot_param>
             <robot_param_node>robot_state_publisher</robot_param_node>
-            <parameters>/home/mr_robot/test_ws/src/bobo_simulation/simulation_packages/romrobots_description/config/bobo_controllers.yaml</parameters>
+            <parameters>/home/mr_robot/test_ws/src/bobo_simulation/simulation_packages/romrobots_description/config/yoyo_controllers.yaml</parameters>
 
             <!-- Output -->
             <odometry_frame>odom</odometry_frame>
@@ -41,6 +41,31 @@
     </gazebo>
     <gazebo reference="left_wheel_link">
       <material>Gazebo/Black</material>
+      <kp>1000000.0</kp>
+      <kd>10.0</kd>
+      <mu1>1.2</mu1>
+      <mu2>1.2</mu2>
+      <fdir1>1 0 0</fdir1>
+      <maxVel>0.5</maxVel>
+      <minDepth>0.00</minDepth>
+      <!-- <mu1>1.3</mu1>
+      <mu2>1.3</mu2> -->
+    </gazebo>
+    <gazebo reference="right_wheel_link">
+      <material>Gazebo/Black</material>
+      <kp>1000000.0</kp>
+      <kd>10.0</kd>
+      <mu1>1.2</mu1>
+      <mu2>1.2</mu2>
+      <fdir1>1 0 0</fdir1>
+      <maxVel>0.5</maxVel>  
+      <minDepth>0.00</minDepth>
+      <!-- <mu1>1.3</mu1>
+      <mu2>1.3</mu2> -->
+    </gazebo>
+
+     <gazebo reference="caster_front_link">
+      <material>Gazebo/Black</material>
       <!-- <kp>1000000.0</kp>
       <kd>10.0</kd>
       <mu1>1.2</mu1>
@@ -48,8 +73,10 @@
       <fdir1>1 0 0</fdir1>
       <maxVel>0.5</maxVel>
       <minDepth>0.00</minDepth> -->
+      <mu1>1.0</mu1>
+      <mu2>0.05</mu2>
     </gazebo>
-    <gazebo reference="right_wheel_link">
+    <gazebo reference="caster_back_link">
       <material>Gazebo/Black</material>
       <!-- <kp>1000000.0</kp>
       <kd>10.0</kd>
@@ -58,17 +85,8 @@
       <fdir1>1 0 0</fdir1>
       <maxVel>0.5</maxVel>  
       <minDepth>0.00</minDepth> -->
-    </gazebo>
-
-     <gazebo reference="caster_front_link">
-      <material>Gazebo/Black</material>
-      <!-- <mu1>1.0</mu1>
-      <mu2>0.05</mu2> -->
-    </gazebo>
-    <gazebo reference="caster_back_link">
-      <material>Gazebo/Black</material>
-      <!-- <mu1>1.0</mu1>
-      <mu2>0.05</mu2> -->
+      <mu1>1.0</mu1>
+      <mu2>0.05</mu2>
     </gazebo>
 
     <gazebo reference="imu_link">

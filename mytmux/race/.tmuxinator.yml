@@ -12,7 +12,7 @@ windows:
   - Gazebo: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; ros2 launch bobo_gazebo simulation_race.launch.py open_rviz:=True use_sim_time:=True
+        - clear; source ~/.bashrc; ros2 launch romrobots_gazebo simulation_race.launch.py open_rviz:=True use_sim_time:=True
   - AES: 
       root: ~/
       panes:

@@ -16,7 +16,7 @@ def generate_launch_description():
             name='ekf_filter_node',
             output='screen',
             parameters=[os.path.join(get_package_share_directory("bobo_ekf"), 'config', 'ekf.yaml')],
-            remappings=[('cmd_vel', 'diff_cont/cmd_vel_unstamped')],
+            remappings=[('cmd_vel', 'diff_cont/cmd_vel_unstamped'),('odometry/filtered' , 'odom')],
            ),
 
 ])

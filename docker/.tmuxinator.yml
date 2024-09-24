@@ -12,8 +12,8 @@ windows:
   - Gazebo: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; #ros2 launch bobo_gazebo bobo_sim_ros2_control.launch.py
+        - clear; source ~/.bashrc; #ros2 launch romrobots_gazebo bobo_sim_ros2_control.launch.py
   - Driver: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; #sleep 5; ros2 launch bobo_gazebo controller_spawner.launch.py
+        - clear; source ~/.bashrc; #sleep 5; ros2 launch romrobots_gazebo controller_spawner.launch.py

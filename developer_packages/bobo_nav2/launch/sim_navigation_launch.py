@@ -15,7 +15,7 @@ from nav2_common.launch import RewrittenYaml
 
 def generate_launch_description():
     # Get the launch directory
-    bringup_dir = get_package_share_directory('rom2109_nav2')
+    bringup_dir = get_package_share_directory('bobo_nav2')
 
     namespace = LaunchConfiguration('namespace')
     use_sim_time = LaunchConfiguration('use_sim_time')
@@ -176,7 +176,7 @@ def generate_launch_description():
                 respawn_delay=2.0,
                 parameters=[configured_params],
                 arguments=['--ros-args', '--log-level', log_level],
-                remappings=remapping+ [('cmd_vel', 'cmd_vel_smoother_to_collision'), ('cmd_vel_collision', 'cmd_vel_collision_to_diff_cont')]),
+                remappings=remapping+ [('cmd_vel', 'cmd_vel_smoother_to_collision'), ('cmd_vel_collision', 'cmd_vel_collision')]),
             Node(
                 package='nav2_lifecycle_manager',
                 executable='lifecycle_manager',

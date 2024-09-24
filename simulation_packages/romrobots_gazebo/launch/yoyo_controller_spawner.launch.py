@@ -12,13 +12,13 @@ import xacro
 
 def generate_launch_description():
     description_pkg = get_package_share_directory('romrobots_description')
-    urdf_file = os.path.join(description_pkg,'urdf', 'bobo.urdf')
+    urdf_file = os.path.join(description_pkg,'urdf', 'yoyo.urdf')
 
     spawn_robot_node = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        # arguments=['-database', 'bobo_tall_ros', '-entity', 'bobo_tall_ros',
-        arguments=['-file', urdf_file, '-entity', 'bobo_standalone',
+        # arguments=['-database', 'yoyo_tall_ros', '-entity', 'yoyo_tall_ros',
+        arguments=['-file', urdf_file, '-entity', 'yoyo_standalone',
                    "-x", '0.0',
                    "-y", '0.0',
                    "-z", '0.1'],
