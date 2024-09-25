@@ -18,7 +18,7 @@ RUN apt-get update && \
     ros-humble-ros2-control ros-humble-ros2-control-test-assets \
     ros-humble-ros2-controllers ros-humble-ros2-controllers-test-nodes \
     ros-humble-navigation2 ros-humble-slam-toolbox ros-humble-cartographer-ros \ 
-    ros-humble-rosbridge-suite \
+    ros-humble-rosbridge-suite ros-humble-plotjuggler \
     && rm -rf /var/lib/apt/lists/*
 
 # Create a ROS 2 workspace directory

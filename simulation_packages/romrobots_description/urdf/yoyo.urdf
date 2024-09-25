@@ -313,7 +313,7 @@
   <joint name="front_caster_ball_joint" type="fixed">
     <parent link="base_link"/>
     <child link="front_caster_ball"/>
-    <origin rpy="0 0 0" xyz="0.16676 0 0.025"/>
+    <origin rpy="0 0 0" xyz="0.16676 0 0.0210"/>
     <!-- z axis 0.02 နဲ့ 0.03 ကြား -->
   </joint>
   <link name="back_caster_ball">
@@ -341,7 +341,7 @@
   <joint name="back_caster_ball_joint" type="fixed">
     <parent link="base_link"/>
     <child link="back_caster_ball"/>
-    <origin rpy="0 0 0" xyz="-0.16676 0 0.025"/>
+    <origin rpy="0 0 0" xyz="-0.16676 0 0.0210"/>
     <!-- z axis 0.02 နဲ့ 0.03 ကြား -->
   </joint>
   <!-- ROM ADD -->
