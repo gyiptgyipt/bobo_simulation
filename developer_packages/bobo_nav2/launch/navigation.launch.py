@@ -50,7 +50,7 @@ def generate_launch_description():
 
     slamtoolbox_localization = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(
-            get_package_share_directory("bobo_nav2"), "launch", "slamtb_online_async_localization_launch.py"
+            get_package_share_directory("bobo_nav2"), "launch", "slamtb_online_async_localization.launch.py"
             )), condition=IfCondition(LaunchConfiguration('use_slamtoolbox')),
             launch_arguments={'use_sim_time': use_sim_time}.items() 
     )
@@ -58,7 +58,7 @@ def generate_launch_description():
     # composable true လုပ်ရန် 
     sim_navigation = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory("bobo_nav2"),"launch","sim_navigation_launch.py"
+            get_package_share_directory("bobo_nav2"),"launch","sim_navigation.launch.py"
             )]), launch_arguments={'use_composition': use_composition}.items()
     )
 
@@ -91,3 +91,20 @@ def generate_launch_description():
 # လိုအပ်ရင် delay node သုံးရန်
 # carto နှင့် slamtoolbox switch ရန် use_slamtoolbox က default အားဖြင့် false 
 # navigation ကို composable true လုပ်ရန် 
+
+# ORIGINAL
+
+# / Nodes /
+# map_server
+# yoyo_pose_monitor
+# 3DCam.py
+# set_dynamic_client
+# mode_assist.py
+
+# / launch /
+# map_match.launch
+# cartographer_localization.launch
+# move_base.launch
+# provider.launch
+# path_server.launch
+# socker_wifi.launch

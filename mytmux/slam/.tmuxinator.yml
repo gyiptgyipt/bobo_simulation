@@ -20,11 +20,11 @@ windows:
   - SlamToolBox: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; sleep 9; ros2 launch bobo_nav2 online_async_launch_mapping_launch.py use_sim_time:=True
+        - clear; source ~/.bashrc; sleep 9; ros2 launch bobo_nav2 online_async_launch_mapping.launch.py use_sim_time:=True
   - NAV2: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; ros2 launch bobo_nav2 sim_navigation_launch.py map_subscribe_transient_local:=True use_sim_time:=True
+        - clear; source ~/.bashrc; ros2 launch bobo_nav2 sim_navigation.launch.py map_subscribe_transient_local:=True use_sim_time:=True
   - TwistKeyboard: 
       root: ~/
       panes:
