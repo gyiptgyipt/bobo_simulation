@@ -7,7 +7,7 @@ from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, GroupAction, SetEnvironmentVariable
 from launch.conditions import IfCondition
 from launch.substitutions import LaunchConfiguration, PythonExpression
-from launch_ros.actions import LoadComposableNodes
+from launch_ros.actions import LoadComposableNodes, ComposableNodeContainer
 from launch_ros.actions import Node
 from launch_ros.descriptions import ComposableNode
 from nav2_common.launch import RewrittenYaml
@@ -22,8 +22,8 @@ def generate_launch_description():
     autostart = LaunchConfiguration('autostart')
     params_file = LaunchConfiguration('params_file')
     use_composition = LaunchConfiguration('use_composition')
-    container_name = LaunchConfiguration('container_name')
-    container_name_full = (namespace, '/', container_name)
+    # container_name = LaunchConfiguration('container_name')
+    # container_name_full = (namespace, '/', container_name)
     use_respawn = LaunchConfiguration('use_respawn')
     log_level = LaunchConfiguration('log_level')
 
@@ -35,6 +35,16 @@ def generate_launch_description():
                        'waypoint_follower',
                        'velocity_smoother',
                        'collision_monitor']
+
+    container_node = ComposableNodeContainer(
+        name='nav2_container',  # This sets the custom container name
+        namespace='',
+        package='rclcpp_components',
+        executable='component_container_mt',  # or 'component_container' for single-threaded
+        composable_node_descriptions=[],  # Nodes can be loaded here or later
+        output='screen',
+        condition=IfCondition(use_composition),
+    )
 
     # Map fully qualified names to relative ones so the node's namespace can be prepended.
     # In case of the transforms (tf), currently, there doesn't seem to be a better alternative
@@ -82,9 +92,9 @@ def generate_launch_description():
         'use_composition', default_value='False',
         description='Use composed bringup if True')
 
-    declare_container_name_cmd = DeclareLaunchArgument(
-        'container_name', default_value='nav2_container',
-        description='the name of conatiner that nodes will load in if use composition')
+    # declare_container_name_cmd = DeclareLaunchArgument(
+    #     'container_name', default_value='nav2_container',
+    #     description='the name of conatiner that nodes will load in if use composition')
 
     declare_use_respawn_cmd = DeclareLaunchArgument(
         'use_respawn', default_value='False',
@@ -191,7 +201,7 @@ def generate_launch_description():
 
     load_composable_nodes = LoadComposableNodes(
         condition=IfCondition(use_composition),
-        target_container=container_name_full,
+        target_container='nav2_container',
         composable_node_descriptions=[
             ComposableNode(
                 package='nav2_controller',
@@ -264,10 +274,11 @@ def generate_launch_description():
     ld.add_action(declare_params_file_cmd)
     ld.add_action(declare_autostart_cmd)
     ld.add_action(declare_use_composition_cmd)
-    ld.add_action(declare_container_name_cmd)
+    # ld.add_action(declare_container_name_cmd)
     ld.add_action(declare_use_respawn_cmd)
     ld.add_action(declare_log_level_cmd)
     # Add the actions to launch all of the navigation nodes
+    ld.add_action(container_node)
     ld.add_action(load_nodes)
     ld.add_action(load_composable_nodes)
 

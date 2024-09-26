@@ -25,7 +25,7 @@ def generate_launch_description():
     bot = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             description_pkg, 'launch', f'{rom_robot_name}_description_ros2_control.launch.py'
-        )]), launch_arguments={'use_sim_time': 'true'}.items()
+        )]), launch_arguments={'use_sim_time': 'true'}.items()  
     )
 
     sed_command_false = ExecuteProcess(

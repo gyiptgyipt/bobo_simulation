@@ -15,7 +15,7 @@ def generate_launch_description():
     cartographer_config_dir = LaunchConfiguration('cartographer_config_dir', default=os.path.join(
                                                   bobo_carto_pkg, 'config'))
     configuration_basename = LaunchConfiguration('configuration_basename',
-                                                 default='bobo_lds_2d.lua')
+                                                 default='reeman_nav_2d.lua')
 
     resolution = LaunchConfiguration('resolution', default='0.05')
     publish_period_sec = LaunchConfiguration('publish_period_sec', default='1.0')
@@ -43,8 +43,8 @@ def generate_launch_description():
             name='cartographer_node',
             output='screen',
             parameters=[{'use_sim_time': use_sim_time}],
-            remappings=[('/odom', '/diff_controller/odom')],
-            arguments=['-configuration_directory', cartographer_config_dir,
+            # remappings=[('/odom', '/diff_controller/odom')],
+            arguments=['-configuration_directory', '/home/mr_robot/test_ws/src/bobo_simulation/developer_packages/bobo_carto/config',
                        '-configuration_basename', configuration_basename],
             ),
 

@@ -12,7 +12,7 @@ windows:
   - Gazebo: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; ros2 launch romrobots_gazebo simulation.launch.py odom_tf:=True use_rviz:=False
+        - clear; source ~/.bashrc; ros2 launch romrobots_gazebo simulation.launch.py odom_tf:=False use_rviz:=False
   - Ekf: 
       root: ~/
       panes:
@@ -24,7 +24,7 @@ windows:
   - NAV2: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; #ros2 launch bobo_nav2 sim_navigation_launch.py map_subscribe_transient_local:=True use_sim_time:=True
+        - clear; source ~/.bashrc; ros2 launch bobo_nav2 sim_navigation_launch.py map_subscribe_transient_local:=True use_sim_time:=True use_composition:=True
   - TwistKeyboard: 
       root: ~/
       panes:

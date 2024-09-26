@@ -11,6 +11,9 @@ def generate_launch_description():
     use_sim_time = LaunchConfiguration('use_sim_time')
     slam_params_file = LaunchConfiguration('slam_params_file')
 
+    rviz_config_dir = os.path.join(get_package_share_directory('bobo_carto'),
+                                   'rviz', 'bobo_cartographer.rviz')
+
     declare_use_sim_time_argument = DeclareLaunchArgument(
         'use_sim_time',
         default_value='true',
@@ -30,11 +33,20 @@ def generate_launch_description():
         executable='async_slam_toolbox_node',
         name='slam_toolbox',
         output='screen')
+    
+    rviz_node = Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            arguments=['-d', rviz_config_dir],
+            parameters=[{'use_sim_time': use_sim_time}],
+            output='screen')
 
     ld = LaunchDescription()
 
     ld.add_action(declare_use_sim_time_argument)
     ld.add_action(declare_slam_params_file_cmd)
     ld.add_action(start_async_slam_toolbox_node)
+    ld.add_action(rviz_node)
 
     return ld
