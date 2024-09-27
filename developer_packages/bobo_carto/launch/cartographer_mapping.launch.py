@@ -41,7 +41,7 @@ def generate_launch_description():
             package='cartographer_ros',
             executable='cartographer_node',
             name='cartographer_node',
-            output='screen',
+            #output='screen',
             parameters=[{'use_sim_time': use_sim_time}],
             # remappings=[('/odom', '/diff_controller/odom')],
             arguments=['-configuration_directory', '/home/mr_robot/test_ws/src/bobo_simulation/developer_packages/bobo_carto/config',
@@ -70,7 +70,8 @@ def generate_launch_description():
             name='rviz2',
             arguments=['-d', rviz_config_dir],
             parameters=[{'use_sim_time': use_sim_time}],
-            output='screen'),
+            #output='screen'
+            ),
     ])
 
 

@@ -20,7 +20,7 @@ windows:
   - Navigation: 
       root: ~/
       panes:
-        - clear; source ~/.bashrc; sleep 13; ros2 launch bobo_nav2 navigation.launch.py map_subscribe_transient_local:=true use_slamtoolbox:=false
+        - clear; source ~/.bashrc; sleep 13; #ros2 launch bobo_nav2 mapping.launch.py map_subscribe_transient_local:=true use_slamtoolbox:=false
   - TwistKeyboard: 
       root: ~/
       panes:
